@@ -38,8 +38,6 @@ client.on('messageCreate', (message) => {
     function (err) {
       if (err) return console.log('Ereur', err);
 
-      // @todo: "sanitizer" les variables `userName` et `userMessage`
-
       pushToClients({
         userName,
         userMessage,
