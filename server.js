@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const sanitizeHtml = require('sanitize-html');
 const cors = require('cors');
 const { Client, Events } = require('discord.js');
 
@@ -25,9 +26,9 @@ client.on('messageCreate', (message) => {
   if (message.channel.id !== DISCORD_CHANNEL_ID) return;
 
   // Récuperer les informations de l'utilisateur ayant posté sur Discord
-  const userMessage = message.content;
-  const userId = message.author.id;
-  const userName = message.author.username;
+  const userMessage = sanitizeHtml(message.content);
+  const userId = sanitizeHtml(message.author.id);
+  const userName = sanitizeHtml(message.author.username);
 
   // @todo: Empêcher le spam d'un même utilisateur avec un système de timeout (~5s d'intervalle)
 
