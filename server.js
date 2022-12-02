@@ -95,7 +95,6 @@ app.get('/events', (request, response) => {
   clients.push(newClient);
 
   request.on('close', () => {
-    console.log(`${clientId} Connection closed`);
     clients = clients.filter((client) => client.id !== newClient.id);
   });
 
